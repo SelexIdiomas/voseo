@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>El Voseo en Hispanoamérica</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --ink: #1a1208;
+      --paper: #f5f0e8;
+      --cream: #ede7d5;
+      --accent: #8b2e0f;
+      --gold: #c9933a;
+      --muted: #6b5e4a;
+      --rule: #c4b99a;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Source Serif 4', Georgia, serif;
+      background-color: var(--paper);
+      color: var(--ink);
+      font-size: 18px;
+      line-height: 1.75;
+    }
+
+    /* Grain overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    /* ─── HEADER ─────────────────────────────────── */
+    header {
+      background-color: var(--ink);
+      color: var(--paper);
+      text-align: center;
+      padding: 4rem 2rem 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--accent), var(--gold), var(--accent));
+    }
+
+    .header-eyebrow {
+      font-family: 'Source Serif 4', serif;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.2rem;
+    }
+
+    header h1 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      max-width: 700px;
+      margin: 0 auto 1rem;
+    }
+
+    header h1 em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .header-subtitle {
+      font-size: 1.05rem;
+      font-style: italic;
+      color: #b8aa94;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    /* ─── LAYOUT ──────────────────────────────────── */
+    .container {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem 6rem;
+    }
+
+    /* ─── DROPCAP LEAD ────────────────────────────── */
+    .lead-paragraph::first-letter {
+      font-family: 'Playfair Display', serif;
+      font-size: 5rem;
+      font-weight: 700;
+      float: left;
+      line-height: 0.8;
+      margin-right: 0.1em;
+      margin-top: 0.1em;
+      color: var(--accent);
+    }
+
+    .lead-paragraph {
+      font-size: 1.15rem;
+      font-weight: 400;
+      margin-bottom: 2rem;
+    }
+
+    /* ─── SECTION HEADINGS ────────────────────────── */
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.9rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-top: 3.5rem;
+      margin-bottom: 0.8rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--rule);
+    }
+
+    h2 + p { margin-top: 0; }
+
+    /* ─── PARAGRAPHS ──────────────────────────────── */
+    p { margin-bottom: 1.4rem; }
+
+    /* ─── HORIZONTAL RULE ────────────────────────── */
+    .ornament {
+      text-align: center;
+      color: var(--gold);
+      font-size: 1.3rem;
+      margin: 2.5rem 0;
+      letter-spacing: 0.5em;
+      opacity: 0.7;
+    }
+
+    /* ─── PULL QUOTE ──────────────────────────────── */
+    blockquote {
+      border-left: 4px solid var(--accent);
+      margin: 2.5rem 0;
+      padding: 1rem 1.5rem;
+      background: var(--cream);
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.2rem;
+      color: var(--accent);
+      line-height: 1.5;
+    }
+
+    blockquote cite {
+      display: block;
+      font-family: 'Source Serif 4', serif;
+      font-style: normal;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 0.6rem;
+    }
+
+    /* ─── COUNTRIES BAND ─────────────────────────── */
+    .countries-band {
+      background-color: var(--ink);
+      color: var(--paper);
+      border-radius: 4px;
+      padding: 2rem;
+      margin: 2.5rem 0;
+    }
+
+    .countries-band h3 {
+      font-family: 'Source Serif 4', serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+
+    .countries-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem 0.7rem;
+    }
+
+    .country-tag {
+      background: rgba(201,147,58,0.15);
+      border: 1px solid rgba(201,147,58,0.35);
+      color: #e8d5b0;
+      border-radius: 2px;
+      font-size: 0.82rem;
+      padding: 0.2rem 0.65rem;
+      font-family: 'Source Serif 4', serif;
+      letter-spacing: 0.03em;
+    }
+
+    /* ─── ILLUSTRATION BLOCKS ────────────────────── */
+    .illustration {
+      margin: 2.5rem 0;
+      text-align: center;
+    }
+
+    .illustration img {
+      max-width: 100%;
+      border: 1px solid var(--rule);
+      border-radius: 2px;
+      display: block;
+      margin: 0 auto;
+    }
+
+    figcaption {
+      font-size: 0.78rem;
+      color: var(--muted);
+      font-style: italic;
+      margin-top: 0.6rem;
+      letter-spacing: 0.02em;
+    }
+
+    /* ─── VERB TABLE ──────────────────────────────── */
+    .verb-section {
+      background: var(--cream);
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      padding: 2rem;
+      margin: 2.5rem 0;
+    }
+
+    .verb-section h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      margin-bottom: 1.2rem;
+      color: var(--accent);
+    }
+
+    .verb-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.95rem;
+    }
+
+    .verb-table th {
+      text-align: left;
+      font-family: 'Source Serif 4', serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 0.4rem 1rem 0.4rem 0;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .verb-table td {
+      padding: 0.55rem 1rem 0.55rem 0;
+      border-bottom: 1px solid rgba(196,185,154,0.4);
+      vertical-align: top;
+    }
+
+    .verb-table td:first-child {
+      font-style: italic;
+      color: var(--muted);
+      min-width: 110px;
+    }
+
+    .verb-table td:last-child {
+      font-weight: 600;
+      color: var(--accent);
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+    }
+
+    /* ─── SANTIAGO CALLOUT ───────────────────────── */
+    .callout {
+      display: flex;
+      gap: 1.2rem;
+      background: #fff8ee;
+      border: 1px solid var(--gold);
+      border-radius: 4px;
+      padding: 1.4rem 1.6rem;
+      margin: 2.5rem 0;
+      align-items: flex-start;
+    }
+
+    .callout-icon {
+      font-size: 1.8rem;
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+    }
+
+    .callout-body h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      margin-bottom: 0.4rem;
+      color: var(--accent);
+    }
+
+    .callout-body p { margin-bottom: 0; font-size: 0.92rem; }
+
+    .example-list {
+      list-style: none;
+      padding: 0;
+      margin: 0.5rem 0 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem 1rem;
+    }
+
+    .example-list li {
+      font-style: italic;
+      font-size: 0.88rem;
+      color: var(--ink);
+    }
+
+    .example-list li::before {
+      content: '»';
+      margin-right: 0.3em;
+      color: var(--gold);
+    }
+
+    /* ─── FOOTER ──────────────────────────────────── */
+    footer {
+      background: var(--ink);
+      color: #8a7f6e;
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+    }
+
+    footer a { color: var(--gold); text-decoration: none; }
+
+    /* ─── ANIMATIONS ──────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .container > * {
+      animation: fadeUp 0.6s ease both;
+    }
+
+    .container > *:nth-child(1) { animation-delay: 0.05s; }
+    .container > *:nth-child(2) { animation-delay: 0.12s; }
+    .container > *:nth-child(3) { animation-delay: 0.19s; }
+    .container > *:nth-child(4) { animation-delay: 0.26s; }
+    .container > *:nth-child(5) { animation-delay: 0.33s; }
+    .container > *:nth-child(n+6) { animation-delay: 0.38s; }
+
+    @media (max-width: 600px) {
+      header h1 { font-size: 2.4rem; }
+      .lead-paragraph::first-letter { font-size: 3.5rem; }
+      h2 { font-size: 1.5rem; }
+      .callout { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <p class="header-eyebrow">Lingüística del español · Hispanoamérica</p>
+    <h1>El <em>Voseo</em></h1>
+    <p class="header-subtitle">Historia, geografía y variaciones de un pronombre que conquistó un continente</p>
+  </header>
+
+  <div class="container">
+
+    <!-- INTRO -->
+    <p class="lead-paragraph">
+      El <strong>voseo</strong> es el uso del pronombre <em>vos</em> en lugar de <em>tú</em>. Proveniente del antiguo <em>vosotros</em>, este pronombre fue adquiriendo en Hispanoamérica un carácter coloquial y afectivo que lo distingue por completo de su origen peninsular.
+    </p>
+
+    <p>
+      El fenómeno lingüístico ocurre de manera más o menos acentuada y más o menos generalizada según los países y las regiones. No se trata de un uso uniforme: en algunos lugares es la norma exclusiva del habla cotidiana; en otros convive con el <em>tú</em>; y en ciertos contextos sólo aparece en registros muy informales.
+    </p>
+
+    <!-- GEOGRAFÍA -->
+    <h2>¿Dónde se usa el voseo?</h2>
+
+    <p>
+      El <em>vos</em> está presente en una vasta franja del continente americano. Con distintas intensidades y particularidades fonéticas, se registra en los siguientes países:
+    </p>
+
+    <div class="countries-band">
+      <h3>Países con voseo</h3>
+      <div class="countries-grid">
+        <span class="country-tag">Argentina</span>
+        <span class="country-tag">Uruguay</span>
+        <span class="country-tag">Paraguay (parcial)</span>
+        <span class="country-tag">Guatemala</span>
+        <span class="country-tag">El Salvador</span>
+        <span class="country-tag">Honduras</span>
+        <span class="country-tag">Nicaragua</span>
+        <span class="country-tag">Chile</span>
+        <span class="country-tag">Perú</span>
+        <span class="country-tag">Bolivia</span>
+        <span class="country-tag">Ecuador</span>
+        <span class="country-tag">Colombia</span>
+        <span class="country-tag">Venezuela</span>
+        <span class="country-tag">México</span>
+        <span class="country-tag">Cuba</span>
+        <span class="country-tag">Panamá</span>
+      </div>
+    </div>
+
+    <div class="ornament">✦ ✦ ✦</div>
+
+    <!-- HISTORIA -->
+    <h2>De lo vulgar a lo literario</h2>
+
+    <p>
+      Hasta mediados del siglo XX el voseo era considerado una forma vulgar y poco culta, asociada a los estratos populares o rurales. Sin embargo, la historia del español en América tiene sus propias reglas.
+    </p>
+
+    <p>
+      A medida que los grandes escritores latinoamericanos comenzaron a introducir el <em>vos</em> en sus obras literarias —con la dignidad y la intención estética propias de la gran narrativa— el pronombre se fue imponiendo como una forma legítima de tratamiento, incorporada al lenguaje de todas las capas sociales.
+    </p>
+
+    <blockquote>
+      "El vos dejó de ser un vulgarismo para convertirse en una marca de identidad cultural y literaria de América Latina."
+      <cite>— Lingüística del español americano</cite>
+    </blockquote>
+
+    <!-- RECONOCIMIENTO -->
+    <h2>Reconocimiento institucional</h2>
+
+    <p>
+      El proceso de legitimación académica culminó con dos hitos fundamentales:
+    </p>
+
+    <p>
+      En <strong>1982</strong>, la <strong>Academia Argentina de Letras</strong> reconoció oficialmente como legítimo el uso del voseo en el español rioplatense. Fue un paso decisivo que consolidó décadas de uso literario y popular.
+    </p>
+
+    <p>
+      Por su parte, la <strong>Real Academia Española</strong> incluyó el voseo en sus modelos de conjugación verbal, aceptando plenamente su uso dentro del sistema del español estándar.
+    </p>
+
+    <div class="ornament">✦ ✦ ✦</div>
+
+    <!-- SANTIAGO DEL ESTERO -->
+    <div class="callout">
+      <div class="callout-icon">🗺️</div>
+      <div class="callout-body">
+        <h4>Curiosidad regional: Santiago del Estero</h4>
+        <p>En el norte argentino es común oír <em>tú</em> y <em>vos</em> entremezclados en el mismo hablante, creando combinaciones únicas que no existen en otras variedades del español:</p>
+        <ul class="example-list">
+          <li>Tú vivís</li>
+          <li>Vos vives</li>
+          <li>Tú tenés</li>
+          <li>Vos tienes</li>
+          <li>¿Vos dices?</li>
+          <li>¿Tú decís?</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- CHILE -->
+    <h2>Variación chilena</h2>
+
+    <p>
+      El <strong>voseo chileno</strong> presenta características fonéticas propias que lo distinguen del español rioplatense. A diferencia de Argentina y Uruguay, donde el voseo es la norma general del habla cotidiana, en Chile el <em>vos</em> suele escucharse <em>sólo en contextos informales</em>.
+    </p>
+
+    <p>
+      Pero la diferencia más llamativa está en las formas verbales: el chileno desarrolló terminaciones particulares que diptongaron las vocales finales, creando un sonido característico e inconfundible.
+    </p>
+
+    <div class="verb-section">
+      <h3>Conjugación voseante chilena</h3>
+      <table class="verb-table">
+        <thead>
+          <tr>
+            <th>Infinitivo</th>
+            <th>Forma chilena con <em>vos</em></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>hablar</td><td>hablái</td></tr>
+          <tr><td>comer</td><td>comís</td></tr>
+          <tr><td>poder</td><td>podís</td></tr>
+          <tr><td>vivir</td><td>vivís</td></tr>
+          <tr><td>ser</td><td>soi / erís</td></tr>
+          <tr><td>venir</td><td>venís</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>
+      Estas formas son producto de una evolución fonética propia del español hablado en Chile, donde las vocales átonas finales suelen debilitarse o transformarse. El resultado es un voseo con una musicalidad inconfundible, señal inequívoca del habla coloquial chilena.
+    </p>
+
+    <div class="ornament">✦</div>
+
+    <p style="color: var(--muted); font-style: italic; font-size: 0.9rem; text-align: center;">
+      El voseo es, en definitiva, una de las manifestaciones más ricas de cómo el español americano construyó su propia identidad lingüística a partir de herencias compartidas y caminos divergentes.
+    </p>
+
+  </div><!-- /container -->
+
+  <footer>
+    <p>Artículo lingüístico · El español en América &nbsp;·&nbsp; <a href="#">Volver al inicio ↑</a></p>
+  </footer>
+
+</body>
+</html>
